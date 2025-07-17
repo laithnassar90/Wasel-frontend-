@@ -1,10 +1,17 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import App from './App';
-import './index.css'; // if you have global CSS, optional
+const express = require('express');
+const cors = require('cors');
+const app = express();
 
-ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
+app.use(cors());
+app.use(express.json());
+
+// Example route
+app.get('/api/hello', (req, res) => {
+  res.json({ message: 'Hello from backend' });
+});
+
+// Start server
+const PORT = process.env.PORT || 3001;
+app.listen(PORT, () => {
+  console.log(`?? Backend running on port ${PORT}`);
+});
